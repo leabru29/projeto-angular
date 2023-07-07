@@ -1,0 +1,18 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@font-face {
+  font-family: Lobster Two;
+  src: url('assets/font/lobster_two/LobsterTwo-Regular.ttf');
+}
+
+.navbar-brand{
+  font-family: Lobster Two;
+  font-size: 60%;
+}
+
+.navbar-brand span{
+  color: #33C5F3;
+}
+
+body{
+  background-color: #384B56;
+}

@@ -1,0 +1,105 @@
+<div class="container p-2 shadow rounded">
+  <div class="row">
+    <form (ngSubmit)="onSubmit()" [formGroup]="formUsuario" #formDir="ngForm">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="nome" class="text-light">Nome</label>
+          <input type="text" id="nome" class="form-control" formControlName="nome" required>
+          <div class="alert alert-danger" *ngIf="nome.invalid && formDir.submitted">Nome é obrigatório</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="sobrenome" class="text-light">Sobrenome</label>
+          <input type="text" id="sobrenome" class="form-control"  formControlName="sobrenome" required>
+          <div class="alert alert-danger" *ngIf="sobrenome.invalid && formDir.submitted">sobrenome é obrigatório</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="data_nascimento" class="text-light">Data de Nascimento</label>
+          <input type="date" id="data_nascimento" class="form-control" formControlName="data_nascimento" required>
+          <div class="alert alert-danger" *ngIf="data_nascimento.invalid && formDir.submitted">Data de Nascimento é obrigatório</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="cpf" class="text-light">CPF</label>
+          <input
+          [inputMask]="cpf_mask" placeholder="___.___.___-__"
+          type="text" id="cpf" class="form-control"  formControlName="cpf" required>
+          <div class="alert alert-danger" *ngIf="cpf.invalid && formDir.submitted">CPF é obrigatório</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="telefone" class="text-light">Telefone</label>
+          <input [inputMask]="telefone_mask" placeholder="(__) ____-____"
+          type="text" id="telefone" class="form-control" formControlName="telefone" required>
+          <div class="alert alert-danger" *ngIf="telefone.invalid && formDir.submitted">telefone é obrigatório</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="email" class="text-light">E-mail</label>
+          <input type="email" id="email" class="form-control"  formControlName="email" required>
+          <div class="alert alert-danger" *ngIf="email.invalid && formDir.submitted">E-mail é obrigatório</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="senha" class="text-light">Senha</label>
+          <input type="password" id="senha" class="form-control" formControlName="senha" required>
+          <div class="alert alert-danger" *ngIf="senha.invalid && formDir.submitted">Senha é obrigatória</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="conf_senha" class="text-light">Confirmar Senha</label>
+          <input type="password" id="conf_senha" class="form-control"  formControlName="conf_senha" required>
+          <div class="alert alert-danger" *ngIf="conf_senha.invalid && formDir.submitted">Confirmar senha é obrigatório</div>
+        </div>
+      </div>
+      <div class="row mt-4 mb-4">
+        <div class="d-flex align-items-center justify-content-center">
+          <h2 class="text-light">Endereço</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="cep" class="text-light">CEP</label>
+          <input [inputMask]="cep_mask" placeholder="__.___-___"
+          type="text" id="cep" class="form-control" formControlName="cep"
+          (blur)="consultaCEP()"
+          required>
+          <div class="alert alert-danger" *ngIf="cep.invalid && formDir.submitted">CEP é obrigatório</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="logradouro" class="text-light">Logradouro</label>
+          <input type="text" id="logradouro" class="form-control"  formControlName="logradouro" required>
+          <div class="alert alert-danger" *ngIf="logradouro.invalid && formDir.submitted">Rua é obrigatório</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="numero" class="text-light">Número</label>
+          <input type="text" id="numero" class="form-control" formControlName="numero" required>
+          <div class="alert alert-danger" *ngIf="numero.invalid && formDir.submitted">Nuḿero é obrigatório, caso não tenha, preencha "S/N"</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="complemento" class="text-light">Complemento</label>
+          <input type="text" id="complemento" class="form-control"  formControlName="complemento">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <label for="bairro" class="text-light">Bairro</label>
+          <input type="text" id="bairro" class="form-control" formControlName="bairro" required>
+          <div class="alert alert-danger" *ngIf="bairro.invalid && formDir.submitted">Bairro é obrigatório</div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <label for="cidade" class="text-light">Cidade</label>
+          <input type="text" id="cidade" class="form-control"  formControlName="cidade" required>
+          <div class="alert alert-danger" *ngIf="cidade.invalid && formDir.submitted">Cidade é obrigatório</div>
+        </div>
+      </div>
+      <div class="row mt-4 mb-3">
+        <div class="d-flex align-items-center justify-content-center">
+          <button type="submit" class="btn btn-cadastrar shadow" [disabled]="!formDir.valid">{{ btnText }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

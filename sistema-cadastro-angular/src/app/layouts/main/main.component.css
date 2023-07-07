@@ -1,0 +1,13 @@
+.container{
+  background-color: #405D6D;
+}
+
+.row{
+  padding: 1%;
+}
+
+.btn-cadastrar{
+  background-color: #33C5F3;
+  border: none;
+  color: white;
+}
