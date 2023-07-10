@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { createMask } from '@ngneat/input-mask';
 import { HttpClient } from '@angular/common/http';
+import { EnderecoService } from 'src/app/services/endereco.service';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,7 @@ export class MainComponent implements OnInit {
 
   formUsuario!: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private enderecoService: EnderecoService) { }
 
   ngOnInit(): void {
     this.formUsuario = new FormGroup({
@@ -102,8 +103,7 @@ export class MainComponent implements OnInit {
       var validaCEP = /^[0-9]{8}$/;
       if (validaCEP.test(cep)) {
          this.resetaForm(this.formUsuario);
-         this.http.get(`//viacep.com.br/ws/${cep}/json`)
-             .subscribe(dados => this.populaForm(dados))
+         this.getDataAndress(cep);
       }
     }
   }
@@ -126,4 +126,9 @@ export class MainComponent implements OnInit {
     })
   }
 
+  getDataAndress(cep: any){
+    this.enderecoService.getDadosEndereco(cep)
+        .then(dados => this.populaForm(dados))
+        .catch(error => console.error(error))
+  }
 }
